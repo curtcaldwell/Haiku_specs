@@ -27,9 +27,8 @@ export class Haiku {
     for (let i = 0; i < vowel.length; i++) {
       if ((vowel[i] == "a") || (vowel[i] == "e") || (vowel[i] == "i") || (vowel[i] == "o") || (vowel[i] == "u")) {
         answer++;
-      } //return index position of aeiou
+      }
     }
-    // console.log(answer);
     return answer;
   }
   diphthongFinder(){
@@ -41,7 +40,6 @@ export class Haiku {
       if( line[i] && line[i + 1] && line[i - 1].match(vowels)){
         syll++;
       }
-      // console.log(line.indexOf("a"));
       return syll;
       //if i, i+1 AND i-1 are all vowels.
       //if i AND i+1 are all vowels.
@@ -59,7 +57,7 @@ export class Haiku {
 
     for (var i = 0; i < str.length; i++){
       if ((vowels.indexOf(str[i])) != -1){
-         vowel_start = i;
+        vowel_start = i;
 
       } if (str[vowel_start] && str[vowel_start + 1].match(reg)) {
         console.log(vowel_start);
@@ -67,9 +65,7 @@ export class Haiku {
         syl++;
         console.log(syl);
       }
-return syl;
+      return syl;
     }
-
-
   }
 }
