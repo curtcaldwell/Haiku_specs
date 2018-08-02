@@ -34,18 +34,12 @@ export class Haiku {
   diphthongFinder(){
     let syll = 0;
     let vowels = /[aeiouy]/gi;
-    //let vowels = ["a", "e", "i", "o", "u", "y"];
     let line = this.line1.split("");
-    for (var i = 1; i <= line.length-2; i++) {
+    for (let i = 1; i <= line.length-2; i++) {
       if( line[i] && line[i + 1] && line[i - 1].match(vowels)){
         syll++;
       }
       return syll;
-      //if i, i+1 AND i-1 are all vowels.
-      //if i AND i+1 are all vowels.
-      //if i AND i-1 are all vowels.
-      //if i is a vowel.
-      // if( line[i] && line[i + 1] && line[i - 1].match(vowels[i])){
     }
   }
   dip2(){
@@ -53,19 +47,60 @@ export class Haiku {
     let reg = /[aeiouy]/gi;
     let vowels = ["a", "e", "i", "o", "u", "y"];
     let str = this.line1.split("");
-    let vowel_start = 0;
 
-    for (var i = 0; i < str.length; i++){
-      if ((vowels.indexOf(str[i])) != -1){
-        vowel_start = i;
-
-      } if (str[vowel_start] && str[vowel_start + 1].match(reg)) {
-        console.log(vowel_start);
-
+    for (let i = 0; i < str.length; i++){
+      if ((vowels.indexOf(str[i])) != -1 && vowels.indexOf(str[i+1]) != -1){
         syl++;
-        console.log(syl);
+        console.log(str);
       }
-      return syl;
     }
+    console.log(syl);
+    return syl;
+  }
+  silentEend(){
+    let beat = 0;
+    let regg = /[aeiouy]/gi;
+    let vowelss = ["a", "e", "i", "o", "u", "y"];
+    let strr = this.line1.split("");
+
+    for (let i = 0; i < strr.length; i++){
+      if ((vowelss.indexOf(strr[i])) != -1 && strr[i+2] === vowelss[1] && (i+2) === strr.length-1){
+        beat++;
+      }
+    }
+
+    return beat;
+  }
+  silentE(){
+    let beat = 0;
+    let regg = /[aeiouy]/gi;
+    let vowelss = ["a", "e", "i", "o", "u", "y"];
+    let strr = this.line1.split("");
+
+    for (let i = 0; i < strr.length; i++){
+      if ((vowelss.indexOf(strr[i])) != -1 && strr[i+2] === vowelss[1] && strr.length-1){
+        beat++;
+      }
+    }
+
+    return beat;
+  }
+  masterF(){
+    let syllable = 0;
+    let reg = /[aeiouy]/gi;
+    let vowels = ["a", "e", "i", "o", "u", "y"];
+    //let this.line1 = this.line1.split("");
+    let answer = this.dip2();
+    let beat = this.silentE();
+    let dip = this.diphthongFinder();
+    let counter = this.vowelFinder();
+    let end = this.silentEend();
+
+    console.log(answer);
+    console.log(beat);
+    return counter - (answer + beat + end + dip);
+    // return answer;
+
+
   }
 }
