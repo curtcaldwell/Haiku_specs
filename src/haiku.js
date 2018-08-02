@@ -1,14 +1,10 @@
 export class Haiku {
-  constructor(line1, line2, line3) {
+  constructor(line1) {
+    console.log(line1);
     this.line1 = line1;
-    this.line2 = line2;
-    this.line3 = line3;
   }
-
   propsToLower() {
     this.line1 = this.line1.toLowerCase();
-    this.line2 = this.line2.toLowerCase();
-    this.line3 = this.line3.toLowerCase();
   }
   propsOnlyLetters(){
     let val = this.line1;
@@ -50,11 +46,9 @@ export class Haiku {
 
     for (let i = 0; i < str.length; i++){
       if((vowels.indexOf(str[i - 1])) === -1 && vowels.indexOf(str[i+2]) === -1
-        && (vowels.indexOf(str[i])) != -1 && vowels.indexOf(str[i+1]) != -1){
-          syl++;
-
-        }
-
+      && (vowels.indexOf(str[i])) != -1 && vowels.indexOf(str[i+1]) != -1){
+        syl++;
+      }
     }
     return syl;
   }
@@ -69,7 +63,6 @@ export class Haiku {
         beat++;
       }
     }
-
     return beat;
   }
   silentE(){
@@ -83,16 +76,12 @@ export class Haiku {
         beat++;
       }
     }
-
     return beat;
   }
   masterF(){
-    let syllable = 0;
-    let reg = /[aeiouy]/gi;
-    let vowels = ["a", "e", "i", "o", "u", "y"];
-    //let this.line1 = this.line1.split("");
-    let answer = this.dip2();
+    console.log("MASTER IS CALLED");
     let beat = this.silentE();
+    let answer = this.dip2();
     let dip = this.diphthongFinder();
     let counter = this.vowelFinder();
     let end = this.silentEend();
@@ -102,6 +91,6 @@ export class Haiku {
     console.log(answer);
     console.log(beat);
     console.log(end);
-    return counter - (answer + dip + beat + end);
+    return counter - (beat + end + answer + dip*2);
   }
 }
