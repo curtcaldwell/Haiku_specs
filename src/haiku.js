@@ -25,7 +25,7 @@ export class Haiku {
     let answer = 0;
     let vowel = this.line1.split("");
     for (let i = 0; i < vowel.length; i++) {
-      if ((vowel[i] == "a") || (vowel[i] == "e") || (vowel[i] == "i") || (vowel[i] == "o") || (vowel[i] == "u")) {
+      if ((vowel[i] == "a") || (vowel[i] == "e") || (vowel[i] == "i") || (vowel[i] == "o") || (vowel[i] == "u") || (vowel[i] == "y")) {
         answer++;
       }
     }
@@ -36,7 +36,7 @@ export class Haiku {
     let vowels = /[aeiouy]/gi;
     let line = this.line1.split("");
     for (let i = 1; i <= line.length-2; i++) {
-      if( line[i] && line[i + 1] && line[i - 1].match(vowels)){
+      if( line[i] && line[i + 1] && line[i - 1] && line[i].match(vowels)){
         syll++;
       }
       return syll;
@@ -49,12 +49,13 @@ export class Haiku {
     let str = this.line1.split("");
 
     for (let i = 0; i < str.length; i++){
-      if ((vowels.indexOf(str[i])) != -1 && vowels.indexOf(str[i+1]) != -1){
-        syl++;
-        console.log(str);
-      }
+      if((vowels.indexOf(str[i - 1])) === -1 && vowels.indexOf(str[i+2]) === -1
+        && (vowels.indexOf(str[i])) != -1 && vowels.indexOf(str[i+1]) != -1){
+          syl++;
+
+        }
+
     }
-    console.log(syl);
     return syl;
   }
   silentEend(){
@@ -96,11 +97,11 @@ export class Haiku {
     let counter = this.vowelFinder();
     let end = this.silentEend();
 
+    console.log(counter);
+    console.log(dip);
     console.log(answer);
     console.log(beat);
-    return counter - (answer + beat + end + dip);
-    // return answer;
-
-
+    console.log(end);
+    return counter - (answer + dip + beat + end);
   }
 }
